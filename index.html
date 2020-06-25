@@ -21,7 +21,7 @@ function tryUntilSuccess(vp, retries)
 {
 	if (!retries) return 0;
 
-	new_video_id = Math.round(Math.random()*threshold);
+	new_video_id = Math.round(Math.random(new Date().getMilliseconds())*threshold);
 	console.log("new video id: "+new_video_id+". retries left: "+retries);
     return vp.loadVideo("https://player.vimeo.com/video/"+new_video_id).catch(rej => {
 		console.log("reject: "+rej);
