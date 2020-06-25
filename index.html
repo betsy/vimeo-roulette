@@ -4,10 +4,28 @@
   <meta charset="UTF-8">
   <title>Vimeo Roulette</title>
 </head>
-<body style = "text-align:center">
+<style>
+	body {
+		text-align: center;
+		font-family: Arial;
+	}
+	.btn {
+		padding: 0.8em;
+		background-color: #00a4bf;
+		color: white;
+		cursor: pointer;
+	}
+	.btn:hover {
+		background-color: lightblue;
+	}
+</style>
+<body>
 
 <h1>Shitty Vimeo Roulette</h1>
 <p>Plays a random vimeo video. Proceed with caution</p>
+<br>
+<p><a class='btn' onclick="tryUntilSuccess(videoPlayer, 30);">New Video</a></p>
+<br><br>
 
 <div id="myVideo"></div>
 
@@ -20,8 +38,8 @@ const threshold = 450000000; // generate random video ids between 0 and this val
 function tryUntilSuccess(vp, retries)
 {
 	if (!retries) return 0;
-
-	new_video_id = Math.round(Math.random(new Date().getMilliseconds())*threshold);
+	date = new Date();
+	new_video_id = Math.round(Math.random(date.getMilliseconds())*threshold);
 	console.log("new video id: "+new_video_id+". retries left: "+retries);
     return vp.loadVideo("https://player.vimeo.com/video/"+new_video_id).catch(rej => {
 		console.log("reject: "+rej);
